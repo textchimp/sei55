@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+<head>  
+  <meta charset="utf-8">
+  <title>HTML Intro</title> 
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  
+  <h1>
+    Welcome to My Special Site With All My Thoughts and Feelings On It 
+  </h1>
+
+  <p id="intro">
+    It was nice of you to  visit. It was nice of you to  visit. It was nice of you to visit. It was nice of you to  visit. 
+    <br>
+    It was nice of you to  visit. It was nice of you to  visit. It was nice of you to  visit.
+  </p>
+
+  <p class="special">Another line.</p>
+
+
+  <h4 class="special">My favourite dogs:</h4>
+
+  <ul>
+    <li>Ruby</li> 
+    <li>Nookie</li> 
+    <li class="special">Jess</li> 
+  </ul>
+
+
+  <h2>Here comes a form!</h2>
+
+  <form>
+    <!-- the container for grouping together all the related form elements -->
+
+    <label>
+      First Name: 
+      <input type="text" name="first_name" placeholder="Enter name capitalised">
+    </label>
+
+    <br>
+
+    <label>
+      Birthday: 
+      <input type="date" name="birthday">
+    </label>
+
+    <br>
+
+    <label>
+      Email body: 
+      <textarea name="email_body">
+Default contents
+Second line
+      </textarea>
+    </label>
+
+    <br>
+
+    <label>
+      Dog breed:
+      <select name="breed">
+        <option value="" selected disabled>Please select...</option>
+        <option value="1">Toller</option>
+        <option value="23">Labrador</option>
+        <option value="153">Pug</option>
+      </select>
+    </label>
+
+    <br>
+
+    <fieldset>
+
+      <legend>
+        Select the preferred dog traits:
+      </legend>
+      
+      <br>
+      
+      <label>
+        <input type="checkbox" name="traits" value="boundy">
+        Lots of bounding around
+      </label>
+      
+      <br>
+      
+      <label>
+        <input type="checkbox" name="traits" value="drool">
+        Prodigous Slobbering
+      </label>
+      
+    </fieldset>
+
+    <fieldset>
+
+      <legend>
+        Select only one brother:
+      </legend>
+      
+      <br>
+      
+      <label>
+        <input type="radio" name="bro" value="groucho">
+        Groucho
+      </label>
+      
+      <br>
+      
+      <label>
+        <input type="radio" name="bro" value="harpo">
+        Harpo
+      </label>
+
+      <br>
+      
+      <label>
+        <input type="radio" name="bro" value="chico">
+        Chico
+      </label>
+      
+    </fieldset>
+
+    <!-- <input type="submit" value="Submit Info"> -->
+    <button>Submit Info</button>
+      
+  </form>
+
+
+  <table>
+
+    <thead>
+      <th>Brother</th>
+      <th>Instrument</th>
+    </thead>
+
+    <tr>
+      <td>Groucho</td>
+      <td>Guitar</td>
+    </tr>
+
+    <tr>
+      <td>Harpo</td>
+      <td>Harp</td>
+    </tr>
+
+    <tr>
+      <td>Chico</td>
+      <td>Flute</td>
+    </tr>
+
+  </table>
+
+  <br>
+
+  <div>DIV container for layout</div> <div>Another DIV container for layout</div>
+
+  <span>A span</span>
+
+  <span>Another span</span>
+
+  <br>
+
+  <h4>Forbidden! / Deprecated</h4>
+
+  <br>
+
+  <b>Bold</b> - use "strong" tag: <strong>Bold</strong>
+  <br>
+  <i>Italics</i> - use "em" tag: <em>italicised</em>
+  <br>
+  <blink>BLINK</blink> - use...nothing! Blinking is annoying!
+  <br>
+  <marquee behavior="" direction="">
+    Scrolling text! So easy and fun!
+  </marquee>
+  <br>
+
+  <font size="12">Some text in a specific size - use CSS instead</font>
+  <br>
+
+  <span style="color:red">Inline styles - use a seprate CSS files and class/id attributes for good "separation of concerns"</span>
+
+  <br>
+
+  <p>
+    How to show code/HTML tags on your page:
+    <br>
+
+    &lt;img&gt;
+
+    <br>
+
+    Copyright: &copy;
+
+    this &amp; that
+
+  </p>
+  
+  <pre>
+    <code>
+      const x = 1;
+      const y = 2;
+      <p>this is a P tag - still need &lt; </p>
+    </code>
+  </pre>
+
+  <blockquote>
+    For inspirational quotes or large quoted blocks.
+  </blockquote>
+
+
+
+  <!-- 
+    An HTML comment....
+
+    can be multi-lined!
+
+    IT STILL APPEARS IN THE BROWSER!
+
+  -->
+
+  <img src="http://www.fillmurray.com/400/300" alt="A headshot of the actor Bill Murray"> 
+
+  <p>
+    Please sign my 
+    <a href="http://ga.co/" target="_blank">Guestbook</a>.
+  </p>
+
+  <div>
+    <span>
+      This is a div!
+      <a href="http://ga.co">Some other link</a>
+    </span>
+  </div>
+
+  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil delectus saepe excepturi cum temporibus exercitationem fuga dolorum voluptatem enim, accusamus culpa quasi tempore facere. Doloribus ab nulla debitis quod.</p>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae impedit cum ad quisquam distinctio dignissimos hic voluptates magnam autem laboriosam deleniti repellat velit sint, officia quod tenetur rem, molestiae voluptatum!</p>
+
+
+
+</body>
+
+</html>
