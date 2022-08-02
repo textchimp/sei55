@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Layout</title>
+  <link rel="stylesheet" href="css/style.css">  
+</head>
+<body>
+  
+  <h1>CSS Layout</h1>
+
+  <p>Let's do this!</p>
+
+  <span>Span content.</span>  
+  <span>More span content.</span>  
+
+  <div>Div content.</div>
+  <div>More content.</div>
+
+  <hr>
+
+  <div class="inlineExample">
+    This element has <code>display: inline;</code>
+  </div>
+
+  <div class="inlineExample">
+    This element also has <code>display: inline;</code>
+  </div>
+
+
+  <div class="blockExample">
+    This element has <code>display: block;</code>
+  </div>
+
+  <div class="blockExample">
+    This element also has <code>display: block;</code>
+  </div>
+
+  <div class="displayNoneExample">
+    This element also has <code>display: none;</code>
+  </div>
+
+  <p>Below the hidden div</p>
+
+  <div class="inlineBlockExample">
+    This element has <code>display: inline-block;</code>
+  </div>
+
+  <div class="inlineBlockExample">
+    This element also has <code>display: inline-block;</code>
+  </div>
+
+  <hr>
+
+  <div class="box staticExample">
+    <strong>static (default):</strong>
+    <br>
+    position is whatever the browser calculates for this element
+    in the page flow; using top/left/etc offset properties
+    has no effect
+  </div>
+
+  <div class="box relativeExample">
+    <strong>relative:</strong>
+    <br>
+    top/left/etc offsets DO work, and are calculated relative
+    to the default (static) position in the flow
+  </div>
+
+  <div class="box staticExample">
+    <strong>static (again):</strong>
+    <br>
+    top/left/etc offsets DO work, and are calculated relative
+    to the default (static) position in the flow
+  </div>
+
+  <div class="box relativeExample">
+    <strong>relative (again):</strong>
+    <br>
+    top/left/etc offsets DO work, and are calculated relative
+    to the default (static) position in the flow
+  </div>
+
+  <hr>
+
+  <div class="box parentOfAbsolute">
+
+    <strong>(parent of absolute)</strong>
+
+    <div class="box absoluteExample">
+      <strong>absolute</strong>
+      <br>
+      top/left/etc offsets work, and are calculated relative to the nearest containing element (ancestor) <em>which is positioned</em>
+    </div>
+
+    <!-- <div class="box anotherAbsoluteExample">
+      <strong>another absolute</strong>
+      <br>
+      top/left/etc offsets work, and are calculated relative to the nearest containing element (ancestor) <em>which is positioned</em>
+    </div> -->
+
+  </div> <!-- parent of absolute -->
+
+   <div class="box staticExample">
+    <strong>static (again):</strong>
+    <br>
+    top/left/etc offsets DO work, and are calculated relative
+    to the default (static) position in the flow
+  </div>
+
+  <div class="box fixedExample">
+    <strong>fixed:</strong>
+    <br>
+    offsets are calculated relative to the window/viewport - i.e. 
+    does NOT move when scrolling
+  </div>
+
+
+</body>
+</html>
