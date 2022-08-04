@@ -1,0 +1,43 @@
+
+h1 {
+  color: hotpink;
+}
+
+p {
+  background-color: goldenrod;
+  border: 1px solid green;
+}
+
+#intro {
+  font-size: 14pt;
+  border: none;
+}
+
+div a {
+  color: red;
+  font-weight: bold;
+}
+
+li.special {
+  border: 4px dashed green;
+}
+
+* {
+  /* border: 1px solid orange; */
+}
+
+img {
+  transition: 1s;
+  width: 50%;
+}
+
+img:hover {
+  filter: hue-rotate(100deg);
+  border: 10px solid red;
+  width: 100%;
+}
+
+li {
+  margin-left: 0px;
+  padding-left: 40px;
+}
