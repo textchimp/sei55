@@ -1,0 +1,13 @@
+
+body {
+  background-color: black;
+  overflow: hidden;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  /* border: 1px solid white; */
+  /* background: url(https://media1.giphy.com/media/1b4mV7p0DBRO8/giphy.gif);
+  background-size: contain; */
+}
