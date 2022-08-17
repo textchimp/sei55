@@ -1,0 +1,16 @@
+
+<h2>Stonk data for "<%= @stock_code %>"</h2>
+
+Company name: <%= @company_name %> <br>
+Latest price: $<%= @stock_price %>
+
+<br>
+Loop practice:
+<br>
+<ul>
+<% @fake_array.each do |item| %>
+  <li>
+    <%= item %>
+    </li>
+<% end %>
+</ul>
