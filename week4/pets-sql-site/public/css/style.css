@@ -1,0 +1,9 @@
+
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: bisque;
+}
+
+.pet-image {
+  max-width: 70vw;
+}
