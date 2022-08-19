@@ -1,0 +1,11 @@
+
+<h3>Index of Owners</h3>
+
+<ul>
+<% @owners.each do |owner| %>
+  <li>
+    <a href="/owners/<%= owner.id %>"><%= owner.name %></a>
+    (<%= owner.email %>)
+  </li>
+<% end %>
+</ul>

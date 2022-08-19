@@ -1,0 +1,26 @@
+
+<h3>
+  Details for <%= @owner.name %>
+</h3>
+
+<p>
+  <strong>Email:</strong>
+  <%= @owner.email %>
+</p>
+
+<p>
+  <strong>Pets:</strong>
+  <ul>
+  <!-- 
+    Use the .pets association to 
+    loop over the array of pets 
+    connected to this owner
+  -->
+  <% @owner.pets.each do |pet| %>
+    <li>
+      <a href="/pets/<%= pet.id %>"><%= pet.name %></a>,
+       (<%= pet.species %>)
+    </li>
+  <% end %>
+  </ul>
+</p>  
