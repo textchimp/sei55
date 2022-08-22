@@ -1,0 +1,14 @@
+
+<h3>
+  Movie Search Results for "<%= @query %>"
+</h3>
+
+<ul>
+
+<% @response['results'].each do |movie| %>
+  <li>
+    <%= movie['title'] %>
+  </li>
+<% end %>
+
+</ul>

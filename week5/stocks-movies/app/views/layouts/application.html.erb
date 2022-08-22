@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stocks and Movies</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <h1>Stonkvies</h1>
+      </nav>
+      <hr>
+    </header>
+    
+    <section>
+      <%= yield %>
+    </section>
+
+    <footer>
+      <hr>
+      &copy; StonksCinema Productions 2022
+    </footer>
+  </body>
+</html>
