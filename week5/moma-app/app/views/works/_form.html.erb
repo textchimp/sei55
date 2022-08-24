@@ -1,0 +1,40 @@
+
+<%= form_with model: @work, local: true do |f| %>
+
+  <%= f.label :title %>
+  <br>
+  <%= f.text_field :title %>
+  <br><br>
+  
+  <%= f.label :year %>
+  <br>
+  <%= f.text_field :year %>
+  <br><br>
+  
+  <%= f.label :medium %>
+  <br>
+  <%= f.text_field :medium %>
+  <br><br>
+  
+  <%= f.label :style %>
+  <br>
+  <%= f.text_field :style %>
+  <br><br>
+
+  <%= f.label :image, 'Image URL' %>
+  <br>
+  <%= f.text_field :image %>
+  <br><br>
+
+  <%= f.label :artist_id, 'Artist' %>
+  <%= f.collection_select :artist_id, Artist.all, :id, :name, include_blank: true  %>
+
+  <!-- 
+  <option value="5">Lee Kranser</option>
+  -->
+
+  <br><br>
+
+  <%= f.submit %>
+
+<% end %>

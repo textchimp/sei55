@@ -1,6 +1,11 @@
 
 <h2><%= @artist.name %></h2>
 
+<!--                /artists/5/edit          -->
+<%= link_to 'Edit', edit_artist_path(@artist.id) %>
+|
+<%= link_to 'Delete', artist_path(@artist.id), method: 'delete' %>
+
 <p>
   <strong>Nationality:</strong>
   <%= @artist.nationality %>
