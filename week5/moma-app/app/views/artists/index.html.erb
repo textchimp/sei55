@@ -1,0 +1,13 @@
+
+<h2>All Artists</h2>
+
+<ul>
+<% @artists.each do |artist| %>
+
+  <li>
+    <%= link_to artist.name,   artist_path(artist.id) %>
+    <!--        'Lee Krasner', /artists/13           -->
+  </li>
+
+<% end %>
+</ul>
