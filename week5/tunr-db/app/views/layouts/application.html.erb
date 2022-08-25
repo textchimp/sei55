@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tunr Music DB</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+
+  <nav>
+    <h1>Tunr Music Database</h1>
+
+    <%= link_to 'Login', login_path %>
+    |
+    <%= link_to 'Logout', login_path, method: 'delete' %>
+
+
+    <hr>
+  </nav>
+
+    <%= yield %>
+
+    <footer>
+      <hr>
+      &copy; Music Snob Productions 2022
+    </footer>
+
+  </body>
+</html>
