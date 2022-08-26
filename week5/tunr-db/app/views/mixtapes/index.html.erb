@@ -1,0 +1,18 @@
+
+
+<h2>All Mixtapes</h2>
+
+<p>
+  Total: <%= pluralize(@mixtapes.length, 'tape') %>
+</p>
+
+TODO: show only mixtapes belonging to current user?
+
+<ul>
+<% @mixtapes.each do |mixtape| %>
+  <li>
+    <%= link_to mixtape.name, mixtape_path(mixtape)  %>
+    (<%= link_to mixtape.user.name, user_path(mixtape.user) %>)
+  </li>
+<% end %>
+</ul>

@@ -10,6 +10,12 @@ class User < ApplicationRecord
   # i.e.
   # User.create! email: 'user@ga.co', password: 'chicken'
   #            ----------------------> password_digest: '798sfd8shdfiushdfkjsdhfsere4'
+
+  validates :name, length: { minimum: 2 }
+
+  # Don't allow a User.create to proceed when the email field is left blank
+  validates :email, presence: true, uniqueness: true
+
   has_secure_password
 
   has_many :mixtapes

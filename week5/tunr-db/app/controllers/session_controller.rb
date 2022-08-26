@@ -37,6 +37,15 @@ class SessionController < ApplicationController
       # or the password given did not, when encrypted, match the
       # password digest stored for that user account
 
+      # The special variable 'flash' is a bit like 'session' variable
+      # in that it uses HTTP cookies to persist some data ACROSS page
+      # loads - but in this case, the data only persists for one more
+      # page load, so you can show an error on the login page after
+      # we redirect there, but the error doesn't stick around forever
+      # - if you reload the page again, the flash will be cleared
+      # and the error message will not appear again
+      flash[:error] = 'Invalid email address or password'
+
       redirect_to login_path   # try again! TODO: show error message
 
     end # else

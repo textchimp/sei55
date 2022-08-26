@@ -1,6 +1,18 @@
 
 <h2>Login</h2>
 
+
+  <% if flash[:error] %>
+
+    <br>
+    <strong>
+      <%= flash[:error] %>
+    </strong>
+    <br>
+    <br>
+
+  <% end %>
+
 <%#
   We can also use the 'form_with' helper for generic forms
   that do NOT work with a model; to do this we use
@@ -8,6 +20,7 @@
   instead of
      model: @SOME_MODEL_HERE
 %>
+
 
 <%= form_with url: login_path, local: true do |f| %>
 

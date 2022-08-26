@@ -14,10 +14,25 @@
   <nav>
     <h1>Tunr Music Database</h1>
 
-    <%= link_to 'Login', login_path %>
-    |
-    <%= link_to 'Logout', login_path, method: 'delete' %>
+    <% if @current_user.present? %>
+      Welcome, <%= @current_user.name %>
+      |
+      <%= link_to 'Logout', login_path, method: 'delete' %>
+    <% else %>
+      <%= link_to 'Login', login_path %>
+      |
+      <%= link_to 'Sign Up', new_user_path %>
+    <% end %>
 
+    <br>
+
+    <%= link_to 'Home', root_path %>
+    |
+    <%= link_to 'All Mixtapes', mixtapes_path %>
+    <% if @current_user.present? %>
+      |
+      <%= link_to 'Create Mixtape', new_mixtape_path %>
+    <% end %>
 
     <hr>
   </nav>

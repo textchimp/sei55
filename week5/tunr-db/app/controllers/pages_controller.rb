@@ -1,4 +1,11 @@
 class PagesController < ApplicationController
+
   def home
+  end  # home
+
+  def faq
   end
-end
+
+
+
+end  # class PagesController

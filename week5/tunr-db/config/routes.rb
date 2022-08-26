@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   post '/login'   => 'session#create'  # form submit, perform login, redirect
   delete '/login' => 'session#destroy' # logout link goes here, perform logout, redirect
 
-  
+  resources :mixtapes, :users
 
 end
