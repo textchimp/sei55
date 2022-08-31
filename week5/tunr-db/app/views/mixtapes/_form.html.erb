@@ -8,7 +8,7 @@
   </ul>
 <% end %>
 
-<%= form_with model: @mixtape, local: true do |f| %>
+<%= form_with model: @mixtape, local: true, html: { multipart: true } do |f| %>
 
   <%= f.label :name %>
   <br>
@@ -18,7 +18,7 @@
 
   <%= f.label :image %>
   <br>
-  <%= f.text_field :image %>
+  <%= f.file_field :image %>
   <br>
   <br>
 

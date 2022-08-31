@@ -9,6 +9,9 @@ class MixtapesController < ApplicationController
   end
 
   def create
+
+    # raise 'hell'  # so we can inspect 'params'
+
     # DO NOT SEND user_ids THROUGH A FORM! Anyone can change form data
     # from the dev tools!
     # Use @current_user.id here to associate with a user - this assumes
@@ -19,6 +22,21 @@ class MixtapesController < ApplicationController
     # then use '=' and '.save'
     @mixtape = Mixtape.new mixtape_params
     @mixtape.user_id = @current_user.id
+
+    # Check if a file was uploaded via the form, and if so,
+    # forward that file onto cloudinary,
+    # and then save the file ID it gives us back, into the
+    # mixtapes object
+    if params[:mixtape][:image].present?
+      # Upload to Cloudinary and capture the response, which includes a new ID
+      response = Cloudinary::Uploader.upload params[:mixtape][:image]
+      # p response  # view in iTerm/terminal
+
+      # set the ID into the model object to save
+      @mixtape.image = response["public_id"]  
+    end # image upload
+
+
     @mixtape.save  # this is actually the create, the DB insert
 
     # Option 1. Make a separate DB query using the '<<' syntax
@@ -55,7 +73,7 @@ class MixtapesController < ApplicationController
     end
 
   end
-  
+
 
   def update
 

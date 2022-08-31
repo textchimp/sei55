@@ -20,5 +20,5 @@
 </p>
 
 <% if @mixtape.image.present? %>
-  <%= image_tag @mixtape.image, alt: @mixtape.name %>
+  <%= cl_image_tag @mixtape.image, alt: @mixtape.name %>
 <% end %>
