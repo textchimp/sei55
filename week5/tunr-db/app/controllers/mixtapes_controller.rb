@@ -36,6 +36,12 @@ class MixtapesController < ApplicationController
       @mixtape.image = response["public_id"]  
     end # image upload
 
+    # NOTE: for the 'update', be sure to remove
+    # the image field from your strong params 
+    # - otherwise you might overwrite the Cloudinary ID 
+    # if you perform your @mixtape.update mixtape_params 
+    # after the Cloudinary upload
+
 
     @mixtape.save  # this is actually the create, the DB insert
 
@@ -109,7 +115,7 @@ class MixtapesController < ApplicationController
   private
 
   def mixtape_params
-    params.require(:mixtape).permit(:name, :image)
+    params.require(:mixtape).permit(:name, :image) # REMOVE :image when using Cloudinary
   end
 
 end # class
