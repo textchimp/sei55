@@ -1,5 +1,9 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+
+require 'simplecov' 
+
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
@@ -70,5 +74,12 @@ RSpec.configure do |config|
         with.library :rails
       end
   end
+
+
+
+
+
+
+  # SimpleCov.start  # produce a coverage report when the tests run
 
 end

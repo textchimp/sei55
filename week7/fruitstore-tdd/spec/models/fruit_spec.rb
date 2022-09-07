@@ -77,16 +77,16 @@ RSpec.describe Fruit, type: :model  do
   end
 
 
-  it 'should be squishy (if a Pear)' do
-    # Predicate method
-    expect( @fruit_retrieved.squishy? ).to eq true
-  end
+  # it 'should be squishy (if a Pear)' do
+  #   # Predicate method
+  #   expect( @fruit_retrieved.squishy? ).to eq true
+  # end
 
-  it 'should not be squishy (if a base Fruit)' do
-    fruit = Fruit.create name: 'base fruit'
-    expect( fruit.squishy? ).to eq false
-    # expect{ fruit.squishy? }.to raise_error(NoMethodError)
-  end
+  # it 'should not be squishy (if a base Fruit)' do
+  #   fruit = Fruit.create name: 'base fruit'
+  #   expect( fruit.squishy? ).to eq false
+  #   # expect{ fruit.squishy? }.to raise_error(NoMethodError)
+  # end
 
 
   # Test AR validations
