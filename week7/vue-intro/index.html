@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJS Intro</title>
+  <script src="js/vue.js"></script>
+  <script src="js/main.js" defer></script>
+  <style>
+    .allGood {
+      color: green;
+    }
+
+    .errors {
+      color: red;
+      border: 1px solid red;
+    }
+
+  </style>
+</head>
+<body>
+  
+  <h1>Vue Intro</h1>
+
+  <div id="app">
+
+    <h3>{{ message }}</h3>
+
+    <dog-info name="Ruby" roundness="3">
+    </dog-info>
+    
+    <dog-info name="Frankie" roundness="4">
+    </dog-info>
+
+    <p v-bind:title="hoverText">
+      Hover on this text to get a message
+    </p>
+
+    <ul>
+      <li v-for="item in todoList">
+        {{ item.text }}
+      </li>
+    </ul>
+
+
+    <br>
+    <input type="text" v-model="queryText">
+    <br>
+
+    <h3>queryText: {{ queryText }}</h3>
+
+    <div 
+      v-if="showMessage" v-bind:class="errorStatus"
+    >
+      These contents might disappear!
+    </div>
+
+
+    <button v-on:click="changeMessage">
+      Click me!
+    </button>
+
+    <br>
+
+    <img v-on:mouseover="hoverHandler"  v-bind:src="billUrl">
+
+
+  </div><!-- end of #app -->
+
+
+</body>
+</html>
