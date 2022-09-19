@@ -10,7 +10,7 @@ class MixtapesController < ApplicationController
 
   def create
 
-    # raise 'hell'  # so we can inspect 'params'
+    raise 'hell'  # so we can inspect 'params'
 
     # DO NOT SEND user_ids THROUGH A FORM! Anyone can change form data
     # from the dev tools!
