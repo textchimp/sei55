@@ -6,4 +6,11 @@ class Mixtape < ApplicationRecord
   # Otherwise there's no link text to click on
   validates :name, presence: true
 
+  # GEOCODING: automatically lookup the GPS coordinates for the address
+  # of a mixtape, as it is .created
+
+  geocoded_by :address
+
+  after_validation :geocode  # actually do lookup when .create-ing
+
 end

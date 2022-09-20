@@ -58,3 +58,5 @@ gem 'pry-rails'
 
 
 gem "cloudinary", "~> 1.23"
+
+gem "geocoder", "~> 1.8"

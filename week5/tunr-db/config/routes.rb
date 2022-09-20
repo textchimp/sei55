@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   post '/login'   => 'session#create'  # form submit, perform login, redirect
   delete '/login' => 'session#destroy' # logout link goes here, perform logout, redirect
 
+  # API endpoint for loading mixtapes as JSON (into map)
+  get '/mixtapes/locations' => 'mixtapes#get_locations'
+
+  
   resources :mixtapes, :users
+
 
 end

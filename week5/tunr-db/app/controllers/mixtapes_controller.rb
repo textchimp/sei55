@@ -2,7 +2,14 @@ class MixtapesController < ApplicationController
   
   # Index and Show don't require a user to be logged in,
   # but all the other actions do (create, update, destroy)
-  before_action :check_if_logged_in, except: [ :index, :show ]
+  before_action :check_if_logged_in, except: [ :index, :show, :get_locations ]
+
+  # For React map
+  def get_locations
+    headers['Access-Control-Allow-Origin'] = '*'  # Deal with CORS check
+    render json: Mixtape.all
+  end
+
 
   def new
     @mixtape = Mixtape.new

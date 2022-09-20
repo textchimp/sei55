@@ -7,7 +7,13 @@ class Follow < ApplicationRecord
   belongs_to :follower, class_name: 'User' 
   belongs_to :followed, class_name: 'User'
 
-  # The column 'status' MUST BE AN INTEGER
+  # The column 'status' MUST BE AN INTEGER to be used as an enum
   enum status: [ :pending, :approved ]
+
+  after_initialize :init
+
+  def init
+    self.status ||= :pending   # default value for status
+  end
 
 end
