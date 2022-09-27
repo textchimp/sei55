@@ -22,12 +22,11 @@
     </select>
   </label>
 
+  
   <div v-if="formErrorMessage.length > 0" class="error">{{ formErrorMessage }}</div>
 
-  <button @click="submitSearch">Search Flights</button>
 
-  <p>Origin: {{ origin }}</p>
-  <p>Destination: {{ destination }}</p>
+  <button @click="submitSearch">Search Flights</button>
 
 </div>
 </template>

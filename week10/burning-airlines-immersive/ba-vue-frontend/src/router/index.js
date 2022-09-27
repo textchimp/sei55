@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import FlightSearch from '@/components/FlightSearch'
 import FlightSearchResults from '@/components/FlightSearchResults'
+import FlightDetails from '@/components/FlightDetails'
 
 Vue.use(Router)
 
@@ -33,6 +34,13 @@ export default new Router({
       //    this.origin
       props: true,
       // <FlightSearchResults origin="SYD" />
+    },
+
+    {
+      path: '/flights/:flightId',
+      name: 'FlightDetails',
+      component: FlightDetails,
+      props: true,
     }
 
   ]
