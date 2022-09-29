@@ -89,6 +89,9 @@
 </template>
 
 <script>
+
+  // console.log('Hello!');
+
 export default {
   name: 'HelloWorld',
 

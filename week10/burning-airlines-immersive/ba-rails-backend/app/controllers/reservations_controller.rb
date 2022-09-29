@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
 
   skip_before_action :verify_authenticity_token # , raise: false
-  FAKE_USER_ID = 16
+  FAKE_USER_ID = 3   # would really come from knock gem's current_user.id
 
   def create
     # render json: params  # just to test

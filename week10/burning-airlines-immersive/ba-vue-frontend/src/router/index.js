@@ -6,7 +6,13 @@ import FlightSearch from '@/components/FlightSearch'
 import FlightSearchResults from '@/components/FlightSearchResults'
 import FlightDetails from '@/components/FlightDetails'
 
-Vue.use(Router)
+// Only use real Router if not in testing mode,
+// i.e. avoid error when mocking: "could not overwrite property $router"
+// console.log('env', process.env.NODE_ENV);
+
+if(!process || process.env.NODE_ENV !== 'testing'){
+  Vue.use(Router)
+}
 
 export default new Router({
   routes: [
