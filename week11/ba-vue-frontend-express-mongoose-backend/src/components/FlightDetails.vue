@@ -249,7 +249,7 @@ export default {
         this.selectedSeat = { row: null, col: null }; // stop the ReservationConfirm child from showing
       
       } catch( err ){
-        console.err('Error saving reservation: ', err);
+        console.error('Error saving reservation: ', err);
         this.error = err; // This will stop showing the seating diagram 
         // and show a generic error instead - is this what we want?
         // TODO: more specific error message for reservation issues

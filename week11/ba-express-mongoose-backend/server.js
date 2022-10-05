@@ -7,6 +7,11 @@ const cors = require('cors');
 // Use this CORS package as part of the Express "middleware stack"
 app.use( cors() ); // set the CORS allow header for us on every request, for AJAX requests
 
+// To get access to POSTed 'formdata' body content, we have to explicitly
+// add a new middleware handler for it  (Rails does this automatically)
+app.use( express.json() );
+app.use( express.urlencoded({ extended: true }) );
+
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT} ...`);
@@ -102,3 +107,55 @@ app.get('/flights/:id', async (req, res) => {
 //  find the reservation's flight (by ID), and push
 //  a new reservation onto the flight's array of 
 //  reservations
+
+app.post('/reservations', async (req, res) => {
+  console.log('POST /reservations');
+  console.log('body:', req.body);
+
+  // Strong params?
+  const newReservation  = {
+    row: req.body.row,
+    col: req.body.col,
+    user_id: 3 // Use the same ID as in FAKE_USER_ID in FlightDetails.vue
+  };
+
+  try {
+
+    const result = await Flight.updateOne(
+      
+      // First argument: search object which specifies how to find the Flight
+      // that you want to update
+      // { _id: '633cd6ab5fa2059a48dbc4e9' },
+      { _id: req.body.flight_id },
+
+      // Second arguement: what update to perform, i.e. fields and their new values
+      {
+        // flight_number: 'BA789',
+        // origin: 'SIN',
+        // reservations: [ newReservation ]   // NOPE! *REPLACES* existing reservations
+        $push: {
+          reservations: newReservation
+        }
+      }
+
+    ); // .updateOne()
+
+    console.log('result of updateOne: ', result);
+
+    if( result.matchedCount === 0 ){
+      console.error('Flight not found for reservation update', result, req.body);
+      // res.sendStatus( 422 );
+      throw new Error('Flight not found by ID');
+    }
+
+    // Send reservation object as response to this AJAX request,
+    // because Vue is expecting it, to add the new reservation into
+    // state and update the seating diagram immediately
+    res.json( newReservation ); 
+
+  } catch( err ){
+    console.error('Error updating flight to add reservation', err);
+    res.sendStatus( 422 );
+  }
+
+});

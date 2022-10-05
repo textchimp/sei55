@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 //    const model = mongoose.model('Flight', FlightSchema);
 //    module.exports = model;
 const Flight = require('./Flight'); 
+const User =   require('./User');   
 
 // Use the Mongoose syntax for connecting to the db;
 // Note it uses a series of event handlers to avoid the
@@ -55,12 +56,64 @@ db.once('open', async () => {
       reservations: [
         { row: 1, col: 1, user_id: 10 },  // NOT real user_ids, just placeholders
         { row: 1, col: 3, user_id: 11 },
-        { row: 1, col: 3, user_id: 11 },
+        { row: 1, col: 4, user_id: 11 },
       ] // reservations[]
     },
   ]);
 
   console.log('flights:', createdFlights);
+
+
+  // User seeds
+
+  await User.deleteMany();
+
+  const createdUsers = await User.create([
+    {
+      name: 'Test User 1',
+      email: 'one@one.com',
+      // passwordDigest: 'chicken', // NOPE! Use bcrypt package!
+      reservations: [
+        {
+          row: 1,
+          col: 1,
+          flight: createdFlights[0], // belongs_to association
+        },
+        {
+          row: 1,
+          col: 1,
+          flight: createdFlights[1], // belongs_to association
+        },
+
+      ]
+    }, // end of Test User 2
+    {
+      name: 'Test User 2',
+      email: 'two@two.com',
+      // passwordDigest: 'chicken', // NOPE! Use bcrypt package!
+      reservations: [
+        {
+          row: 3,
+          col: 3,
+          flight: createdFlights[0], // belongs_to association
+        },
+        {
+          row: 1,
+          col: 3,
+          flight: createdFlights[1], // belongs_to association
+        },
+      ]
+    }, // End of Test User 2
+  
+  ]); // User.create()
+
+  // console.log('Users:', createdUsers);
+
+
+  console.log('Users:', createdUsers[0].reservations );
+
+
+
 
   // 3. ActiveRecord: Flight.all
   // const flights = await Flight.find();

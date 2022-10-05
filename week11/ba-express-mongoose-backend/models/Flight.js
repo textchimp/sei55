@@ -39,10 +39,10 @@ const FlightSchema = new mongoose.Schema({
       user_id: Number, // placeholder/example
 
       // TODO: make this work
-      user: {
-        // how do I connect to a User object from another collection (table)
-        // by using an ID here? Research 'Mongoose Reference'
-      },
+      // user: {
+      //   // how do I connect to a User object from another collection (table)
+      //   // by using an ID here? Research 'Mongoose Reference'
+      // },
 
     }
   ],
