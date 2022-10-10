@@ -83,7 +83,7 @@ FlightSchema.methods.saveReservation = async function(row, col, user){
   // NOTE that we can't define this model method as an arrow function
   // because Mongoose needs to set the value of 'this' to refer to
   // "the current flight" for us i.e. if we write
-  //    f1.saveReservation(12, 3, currentUser) 
+  //    await f1.saveReservation(12, 3, currentUser); 
   // ...then 'this' will refer to // 'f1'
 
 

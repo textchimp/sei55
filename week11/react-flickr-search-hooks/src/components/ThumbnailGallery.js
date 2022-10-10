@@ -1,15 +1,25 @@
 import { useParams } from 'react-router-dom';
 
+import { useSelector, useDispatch } from 'react-redux';
+
+
 import { useFlickrSearchResults } from '../customHooks/flickr';
 
 const FlickrImage = ({ photo, size }) => {
 
   // const { photo, size } = props;
 
+  const dispatch = useDispatch();
+
+  function handleClick(){
+    dispatch({ type: 'favouritePhotos/added', payload: photo });
+  }  
+
   return (
     <img
        src={`https://live.staticflickr.com/${ photo.server }/${ photo.id }_${photo.secret}_${ size }.jpg`}
        alt={ photo.title }
+       onClick={ handleClick }
     />
   );
 
@@ -18,6 +28,9 @@ const FlickrImage = ({ photo, size }) => {
 
 
 function ThumbnailGallery( props ){
+
+  const counter = useSelector( state => state.counter );
+  const dispatch = useDispatch();
 
   // This is a 'reactive' hook function - i.e., 
   // if the router params change, our function will be forced
@@ -36,17 +49,26 @@ function ThumbnailGallery( props ){
         <h3>
           Results for "{ params.searchText }":
         </h3>
+
+        <p>
+          Redux store counter: { counter }
+          <br/>
+          <button onClick={ () => dispatch({ type: 'clickCounter/incrementedByy', payload: 5 }) }>
+            Increment by 5
+          </button>
+        </p>
+
       {
         loading
         ?
         <p>Loading results...</p>
         :
-        results.map( photo => <FlickrImage photo={photo} size="q" /> )
+        results.map( photo => <FlickrImage photo={photo} size="q" key={photo.id} /> )
       }
       </div>
   );
 
-}
+} // function ThumbnailGallery
 
 
 /******************** 

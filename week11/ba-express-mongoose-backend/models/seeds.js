@@ -1,6 +1,8 @@
 
 const mongoose = require('mongoose');
 
+const bcrypt = require('bcrypt');
+
 // Load the Flight model
 // Remember this will return the value of 'module.exports'
 // as set at the end of that file:
@@ -72,6 +74,9 @@ db.once('open', async () => {
     {
       name: 'Test User 1',
       email: 'one@one.com',
+      
+      passwordDigest: bcrypt.hashSync('chicken', 10), // "number of rounds to use when generating a salt", "cost factor"
+
       // passwordDigest: 'chicken', // NOPE! Use bcrypt package!
       reservations: [
         {
@@ -90,7 +95,8 @@ db.once('open', async () => {
     {
       name: 'Test User 2',
       email: 'two@two.com',
-      // passwordDigest: 'chicken', // NOPE! Use bcrypt package!
+      passwordDigest: bcrypt.hashSync('chicken', 10),
+      
       reservations: [
         {
           row: 3,
@@ -110,8 +116,16 @@ db.once('open', async () => {
   // console.log('Users:', createdUsers);
 
 
-  console.log('Users:', createdUsers[0].reservations );
+  console.log('Users:', createdUsers );
 
+
+  // await createdFlights[0].saveReservation(5, 5, createdUsers[0]);
+
+  // const fnew = await Flight.findOne({flight_number: createdFlights[0].flight_number}).populate('reservations.user');
+  // console.log('new f res', fnew.reservations);
+
+  // const unew = await User.findOne({email: createdUsers[0].email}).populate('reservations.flight');
+  // console.log('new u res', unew.reservations);
 
 
 
