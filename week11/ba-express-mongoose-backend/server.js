@@ -33,13 +33,88 @@ db.on('error', err => {
 });
 
 
+// GraphQL endpoint setup and schema definition
+const { graphqlHTTP } = require('express-graphql');
+const { buildSchema } = require('graphql');
+
+const schema = buildSchema(`
+
+  type Query {
+    
+    flight(id: String!): Flight
+
+    flights(origin: String, destination: String): [Flight]
+
+    users: [User]
+
+    # user(id: String!): User
+
+  }
+
+  type User {
+    name: String
+    email: String
+    reservations: [Reservation]
+  }
+
+  type Flight {
+    flight_number: String
+    origin: String
+    destination: String
+    _id: String
+    reservations: [Reservation]
+  }
+
+  type Reservation {
+    row: Int
+    col: Int
+    flight: Flight
+  }
+
+`); // schema
+
+// Tell Graphql what to do to respond to the queries defined in the
+// above schema, i.e. how to get them from the database
+const rootResolver = {
+
+  flight( args ){
+    // console.log('inside "flight" resolver', args);
+    // Even though this Mongoose query returns a promise, 
+    // we don't need 'await' here because GraphQL notices
+    // when a resolver function returns a promise, and it
+    // handles it appropriately (awaits the promise resolution
+    // itself)
+    return Flight.findOne({ _id: args.id });
+  }, 
+
+  flights( args ){
+    return Flight.find( args );  // .find({ origin: 'SYD' })
+  },
+
+  users( args ){
+    return User.find( args ).populate('reservations.flight');
+  }
+
+};
+
+// Tell Express to create the main graphQL endpoint
+app.use('/graphql', 
+  graphqlHTTP({
+    schema: schema,
+    rootValue: rootResolver,
+    graphiql: true  // give us that natty web GUI for debugging
+  })
+); // app.use
+
+
+
 // Authentication
 
 const bcrypt = require('bcrypt');
 const jwt    = require('jsonwebtoken');
 const jwtAuthenticate = require('express-jwt');
 
-console.log('jwta', jwtAuthenticate);
+// console.log('jwta', jwtAuthenticate);
 
 const checkAuth = () => {
 
