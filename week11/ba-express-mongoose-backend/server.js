@@ -102,7 +102,7 @@ app.use('/graphql',
   graphqlHTTP({
     schema: schema,
     rootValue: rootResolver,
-    graphiql: true  // give us that natty web GUI for debugging
+    graphiql: true  // give us that natty web GUI for debugging: http://localhost:3000/graphql
   })
 ); // app.use
 
