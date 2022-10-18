@@ -1,3 +1,9 @@
+# ...use a Ruby 'mixin' to give 'map', 'reduce' etc for free
+# as long as we define an 'each' method
+include Enumerable
+# 'interface abstraction' / 'interface inheritance'
+
+
 
 # THOUGHT EXPERIMENT:
 #
@@ -38,12 +44,15 @@ class SLL
   
   attr_accessor :head
 
-  def initialize( val )
+  # Note: val argument now optional
+  # (need to be able to create an empty list
+  # when reverse()-ing)
+  def initialize( val=nil )
     # Create an instance of the Node class,
     # and give it the 'val' argument as its
     # data; then store this new first node
     # in the @head attribute
-    @head = Node.new val
+    @head = Node.new val unless val.nil?
   end
 
   # This method will create a new Node, assign 'val'
@@ -163,29 +172,78 @@ class SLL
   #   and don't forget to update it after any
   #   change to the length of the list
   def length
-  end
+
+    count = 0
+
+    # # PRE-each
+    #
+    # node = @head
+    # while node != nil
+    #   count += 1
+    #   node = node.next
+    # end
+    # @length = count   # would be nice as shortcut
+
+    # using each
+    self.each { |n| count += 1 }
+
+    count
+  end # length
+
 
   # Array-like access to the node at position n,
   # starting at zero; return whole node
   # def []( n )
-  def at_index( n )
-  end
+  def []( index )     #  list[ n
+
+    return nil unless index < self.length
+    # raise IndexError.new('out of range') unless index < self.length
+
+    node = @head
+    index.times { node = node.next }
+    node
+  end # [] method
+
+  # use 'at_index' as an alias for '[]'
+  alias_method :at_index, :[]
 
   # Returns a reversed version of the list;
   # NON-DESTRUCTIVE - do not modify the original
   # list to which this method is applied
   def reverse
-  end
+    reversed = SLL.new  # leave off argument to avoid creating a head node
+
+    node = @head
+    while node != nil
+      reversed.prepend node.data
+      node = node.next
+    end
+
+    reversed # return the new reversed list
+  end # reverse()
 
   # Destructive version of reverse, DOES change
   # the list to which it's applied, i.e. changes 'self'
   def reverse!
+    # self = self.reverse   # NOPE! 'the self is immutable'
+
+    # Use the immutable reserve first, then save 
+    # the resulting head back to self
+    @head = self.reverse.head
   end
 
 
   # Remove the first node from the list (destructively)
   # and return the node
   def shift
+
+    # if we don't do this first, it's too late after the next line
+    first_node = @head
+    @head = @head.next
+
+    first_node.next = nil # don't include the rest of the list
+
+    first_node
   end
 
   # Remove the specified node from the list;
@@ -194,13 +252,54 @@ class SLL
   # find the node BEFORE the one we're deleting
   # (this wouldn't be necessary in a Doubly-Linked List)
   def delete( node_to_delete )
-  end
+
+    node = @head
+    prev_node = nil
+
+    while node != node_to_delete && node != nil
+      prev_node = node  # keep track for when we find the node to delete
+      node = node.next
+    end # while
+
+    if node == node_to_delete
+      # special case where the node to delete is the first node
+      if node == @head
+        @head = node.next
+        return true
+      end
+
+      prev_node.next = node.next # standard case
+    end
+
+
+    false # this should only happen if the specified node to delete is not actually in this list
+
+  end # delete()
+
+
 
   # Remove the node at the specified position
   # (i.e. you don't already have a node from the list)
   # - make sure you don't break the chain
-  # - this one can use at_index() for
+  # - this one can use at_index() to get the node
   def delete_at( n )
+    
+    node = self[n]  
+    return nil if node.nil?
+
+    if n == 0 
+      # special case
+      @head = node.next      
+    else 
+      # get the previous node and link the chain
+      # over the current node; i.e. 
+      # "the next node of the previous node is now
+      # the next node of the current node"
+      self[n - 1].next = node.next
+    end
+
+    node.next = nil  # don't return whole list
+    node
   end
 
   # Implement the each method: your version of .each
@@ -213,8 +312,17 @@ class SLL
   # ...which will give you iteration methods like .map,
   # .filter/select, .find for free!
   def each
-    # while loop, plus yield
-  end
+
+    return nil unless block_given?
+
+    node = @head
+    while node != nil
+      yield( node )
+      node = node.next
+    end
+
+    self
+  end # each()
 
 
   # as above, expects a block and runs the block for each
@@ -222,9 +330,22 @@ class SLL
   # as transformed by the block
   #
   # ...simplest case will be like .to_a
-  def map
-  end
-
+  #
+  #
+  # ### Now provided by 'Enumerable' mixin!
+  #
+  # def map
+  #   output = []
+  
+  #   self.each do |n|
+  #     # "append to the output array whatever the
+  #     # result of running the block is (when the 
+  #     # block is given the current node)"
+  #     output << yield(n)
+  #   end
+  
+  #   output
+  # end # map
 
 
 
