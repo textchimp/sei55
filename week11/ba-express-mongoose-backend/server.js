@@ -1,7 +1,7 @@
 
 const express = require('express');
 const app = express();
-const PORT = 3000; // process.argv[2] to get from command like
+const PORT = 3000; // process.argv[2] to get from command line
 
 const cors = require('cors');
 // Use this CORS package as part of the Express "middleware stack"
@@ -13,7 +13,10 @@ app.use( express.json() );
 app.use( express.urlencoded({ extended: true }) );
 
 
-app.listen(PORT, () => {
+// Capture the server object that the listen() method
+// returns so we can export it (at the end of this file
+// for use by the test suite)
+const server = app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT} ...`);
 });
 
@@ -21,6 +24,14 @@ app.listen(PORT, () => {
 const mongoose = require('mongoose');
 const Flight   = require('./models/Flight'); // Flight model
 const User     = require('./models/User');
+
+// TODO: connect to a different database when in
+// test mode (not 'ba', maybe 'ba-test')
+// We want our tests to be completely 'deterministic'
+// (predictable) so we don't want to rely on the
+// unknown contents of the actual dev DB.
+// Use a conditional to test process.env.NODE_ENV
+// for 'testing' 
 
 mongoose.connect('mongodb://127.0.0.1/ba');
 const db = mongoose.connection;
@@ -380,3 +391,6 @@ app.get('/seekrits', (req, res) => {
   });
 
 });
+
+
+module.exports = server; // export for the test suite require()
